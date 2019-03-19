@@ -6,31 +6,31 @@
 # Note that the input matrix must be a square and invertible matrix!
 
 makeCacheMatrix <- function(x = matrix()) {
-  inv_m = NULL
-  set <- function(y) {
-    x <<- y
-    inv_m <<- NULL
-  }
-  get <- function() x
-  setinv <- function(solved) inv_m <<- solved
-  getinv <- function() inv_m
-  list(set = set, get = get, 
-       setinv = setinv, 
-       getinv = getinv)
+      inv_m = NULL
+      set <- function(y) {
+            x <<- y
+            inv_m <<- NULL
+      }
+      get <- function() x
+      setinv <- function(solved) inv_m <<- solved
+      getinv <- function() inv_m
+      list(set = set, get = get, 
+           setinv = setinv, 
+           getinv = getinv)
 }
 
 ## This function gets the above created matrix as an input and outputs the inverse of that matrix, in the case that it has not been already created.
 
 cacheSolve <- function(x, ...) {
-  ## Return a matrix that is the inverse of 'x'
-  inv_m <- x$getinv()
-  if(!is.null(inv_m)) {
-    message("getting cached data")
-    return(inv_m)
-  }
-  data <- x$get()
-  inv_m <- solve(data,...)
-  x$setinv(inv_m)
-  inv_m
+        ## Return a matrix that is the inverse of 'x'
+      inv_m <- x$getinv()
+      if(!is.null(inv_m)) {
+          message("getting cached data")
+          return(inv_m)
+      }
+      data <- x$get()
+      inv_m <- solve(data,...)
+      x$setinv(inv_m)
+      inv_m
 }
 
